@@ -35,4 +35,12 @@ class AppTheme {
     letterSpacing: 0.2,
     color: lightText,
   );
+
+  static const TextStyle subtitle = TextStyle(
+    fontFamily: fontName,
+    fontWeight: FontWeight.w400,
+    fontSize: 14,
+    letterSpacing: -0.04,
+    color: darkText,
+  );
 }
