@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:lottie/lottie.dart';
 import 'package:weather_app/app_theme.dart';
 import 'package:weather_app/models/weather_model.dart';
@@ -15,8 +16,8 @@ class _WeatherPageState extends State<WeatherPage> {
   TextEditingController cityController = TextEditingController();
   String cityTextField = "";
   //api key
-  final _weatherService =
-      WeatherService(apiKey: "1fb21f39f9929c60257e7c6ea2f2e72d");
+  final _weatherService = WeatherService(apiKey: dotenv.env['API_KEY']!);
+
   Weather? _weather;
   //fetch weather
   _fetchWeather() async {

@@ -1,0 +1,29 @@
+```yaml
+name: Flutter CI
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2
+
+    - name: Set up Flutter
+      uses: subosito/flutter-action@v1
+      with:
+        flutter-version: '2.5.0'
+
+    - name: Install dependencies
+      run: flutter pub get
+
+    - name: Create .env file
+      run: echo "API_KEY=${{ secrets.API_KEY }}" > .env
+
+    - name: Build APK
+      run: flutter build apk --release
+```
