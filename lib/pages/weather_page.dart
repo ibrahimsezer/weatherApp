@@ -12,6 +12,8 @@ class WeatherPage extends StatefulWidget {
 }
 
 class _WeatherPageState extends State<WeatherPage> {
+  TextEditingController cityController = TextEditingController();
+  String cityTextField = "";
   //api key
   final _weatherService =
       WeatherService(apiKey: "1fb21f39f9929c60257e7c6ea2f2e72d");
@@ -19,8 +21,12 @@ class _WeatherPageState extends State<WeatherPage> {
   //fetch weather
   _fetchWeather() async {
     //get the current city
-    String cityName = await _weatherService.getCurrentCity();
-
+    String cityName = "";
+    if (cityTextField != "") {
+      cityName = cityTextField;
+    } else {
+      cityName = await _weatherService.getCurrentCity();
+    }
     //get weather for city
     try {
       final weather = await _weatherService.getWeather(cityName);
@@ -69,6 +75,7 @@ class _WeatherPageState extends State<WeatherPage> {
 
   @override
   Widget build(BuildContext context) {
+    Size screenSize = MediaQuery.sizeOf(context);
     return Scaffold(
       body: Center(
         child: Column(
@@ -84,6 +91,36 @@ class _WeatherPageState extends State<WeatherPage> {
 
             //weather condition
             Text(_weather?.mainCondition ?? "", style: AppTheme.body1),
+            Container(
+              width: screenSize.width * 0.6,
+              child: TextField(
+                controller: cityController,
+                style: AppTheme.body1,
+                decoration: InputDecoration(
+                    hintText: "Write the city",
+                    suffixIcon: Row(
+                      mainAxisSize: MainAxisSize.min,
+                      children: [
+                        IconButton(
+                          onPressed: () {
+                            cityTextField = cityController.text;
+                            cityController.text = "";
+                            _fetchWeather();
+                          },
+                          icon: const Icon(Icons.arrow_forward),
+                        ),
+                        IconButton(
+                          onPressed: () {
+                            cityTextField = "";
+                            cityController.text = "";
+                            _fetchWeather();
+                          },
+                          icon: const Icon(Icons.my_location),
+                        ),
+                      ],
+                    )),
+              ),
+            ),
           ],
         ),
       ),
