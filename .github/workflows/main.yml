@@ -1,4 +1,4 @@
-```yaml
+
 name: Flutter CI
 
 on:
@@ -26,4 +26,4 @@ jobs:
 
     - name: Build APK
       run: flutter build apk --release
-```
+
