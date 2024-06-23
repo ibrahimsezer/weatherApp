@@ -91,7 +91,7 @@ class _WeatherPageState extends State<WeatherPage> {
 
             //weather condition
             Text(_weather?.mainCondition ?? "", style: AppTheme.body1),
-            Container(
+            SizedBox(
               width: screenSize.width * 0.6,
               child: TextField(
                 controller: cityController,
