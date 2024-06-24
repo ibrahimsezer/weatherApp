@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:lottie/lottie.dart';
 import 'package:weather_app/app_theme.dart';
+import 'package:weather_app/consts/cities.dart';
 import 'package:weather_app/models/weather_model.dart';
 import 'package:weather_app/services/weather_service.dart';
 
@@ -15,7 +16,8 @@ class WeatherPage extends StatefulWidget {
 class _WeatherPageState extends State<WeatherPage> {
   TextEditingController cityController = TextEditingController();
   String cityTextField = "";
-  //api key
+  String selectedCity = Cities.cityNames[5]; // Ankara
+  //go to .env file for APIKEY
   final _weatherService = WeatherService(apiKey: dotenv.env['API_KEY']!);
 
   Weather? _weather;
@@ -120,6 +122,36 @@ class _WeatherPageState extends State<WeatherPage> {
                         ),
                       ],
                     )),
+              ),
+            ),
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: SizedBox(
+                width: screenSize.width * 0.6,
+                child: DropdownButton<String>(
+                  alignment: AlignmentDirectional.center,
+                  value: selectedCity,
+                  items: Cities.cityNames.map((String city) {
+                    return DropdownMenuItem<String>(
+                      value: city,
+                      child: Text(city, style: AppTheme.body1),
+                    );
+                  }).toList(),
+                  onChanged: (String? newCity) {
+                    if (newCity != null) {
+                      setState(() {
+                        selectedCity = newCity;
+                        cityTextField = selectedCity;
+                      });
+                      _fetchWeather();
+                    }
+                  },
+                  icon: const Padding(
+                    padding: EdgeInsets.only(left: 32),
+                    child: Icon(Icons.arrow_drop_down),
+                  ),
+                  underline: const SizedBox.shrink(),
+                ),
               ),
             ),
           ],
