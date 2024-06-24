@@ -22,5 +22,7 @@ flutter pub get
 ```
 
 # 🎨 Screenshots
-<img width="256" alt="screen shot 2017-08-07 at 12 18 15 pm" src="https://github.com/ibrahimsezer/weatherApp/blob/main/assets/screenshots/ss1.jpg?raw=true"> 
-<img width="256" alt="screen shot 2017-08-07 at 12 18 15 pm" src="https://github.com/ibrahimsezer/weatherApp/blob/main/assets/screenshots/ss4.jpg?raw=true"> 
+<p align="center">
+  <img width="256" alt="screen shot 2017-08-07 at 12 18 15 pm" src="https://github.com/ibrahimsezer/weatherApp/blob/main/assets/screenshots/ss1.jpg?raw=true">
+  <img width="256" alt="screen shot 2017-08-07 at 12 18 15 pm" src="https://github.com/ibrahimsezer/weatherApp/blob/main/assets/screenshots/ss4.jpg?raw=true">
+</p>
